@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <title>Marvel</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="css/bootstrap.css">
-  <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>  
+  <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
   <style>
 
+    @font-face { font-family: SuperHero; src: url('fonts/SaucerBB.ttf'); }
+    
     input[type=text] {
         width: 30%;
         box-sizing: border-box;
@@ -35,12 +38,7 @@
 
     .jumbotron h1, .jumbotron .h1 {
     color: White;
-    background-color: rgba(226,54,54, 0.7);
-    font-family: Marvel; 
-    font-size: 62px; 
-    font-style: normal; 
-    font-variant: normal; 
-    font-weight: 700; 
+    background-color: rgba(226,54,54, 0.7); 
     line-height: 46.2px;
     padding: 3px;
     border-radius: 25px;
@@ -60,49 +58,50 @@
     }
   </style>
 </head>
+
 <body>
-
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
-      </button>
-      <a class="navbar-brand" href="#">Marvel</a>
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Marvel</a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#">Home</a></li>
+          <li><a href="#">Tutorial</a></li>
+          <li><a href="#">About</a></li>
+        </ul>
+      </div>
     </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Home</a></li>
-        <li><a href="#">Tutorial</a></li>
-        <li><a href="#">About</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
+  </nav>
 
-<div class="jumbotron">
-  <div class="container text-center">
-    <h1>Marvel Comics</h1>      
-      <form>
-        <input type="text" name="search" placeholder="Search Comics...">
-        <input type="button" class="btn btn-primary" onclick="searchFunction()" value="Submit">
+  <div class="jumbotron">
+    <div class="container text-center">
+      <h1 style="font-family:SuperHero;">Marvel Comics</h1>
+      <form id="form1">
+        <input id="search_value" type="text" name="search" placeholder="Search Comics...">
+        <input id="search_button" form="form1" type="button" class="btn btn-primary" onclick="searchFunction()" value="Submit">
       </form>
+    </div>
   </div>
-</div>
-  
-<div class="container-fluid bg-3 text-center">    
-  <h3 id="message"></h3><br>
-  <div id="results_div"></div>
-</div><br>
 
-<br><br>
+  <div class="container-fluid bg-3 text-center">
+    <h3 id="message" style="font-family:SuperHero;"></h3><br>
+    <div id="results_div"></div>
+  </div><br>
 
-<footer class="container-fluid text-center" >
-  <p id="footer">Data provided by Marvel. © 2018 MARVEL</p>
-</footer>
+  <br><br>
+
+  <footer class="container-fluid text-center">
+    <p id="footer">Data provided by Marvel. © 2018 MARVEL</p>
+  </footer>
 
 </body>
 <script type="text/javascript" src="js/marvel.js"></script>
+
 </html>
