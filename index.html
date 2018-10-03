@@ -2,15 +2,34 @@
 <html lang="en">
 
 <head>
-  <title>Marvel</title>
+  <title>Marvel Comics</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="img/marvel.ico">
   <link rel="stylesheet" href="css/bootstrap.css">
   <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
   <style>
 
     @font-face { font-family: SuperHero; src: url('fonts/SaucerBB.ttf'); }
     
+    .btn-block {
+      display: block;
+      width: 100%;
+      margin-top: 50px;
+    }
+
+    .incline-line{
+        width: 98%;
+        margin: auto;
+        margin-top: 5%;
+        margin-bottom: 5%;
+        transform: rotate(3deg);
+        /*border-color: rgb(226,54,54);*/
+        border-color: purple;
+
+    }
+
+   
     input[type=text] {
         width: 30%;
         box-sizing: border-box;
@@ -55,6 +74,7 @@
       background-color: #504a4a;
       padding: 25px;
       color: white;
+      width: 100%;
     }
   </style>
 </head>
@@ -84,8 +104,8 @@
     <div class="container text-center">
       <h1 style="font-family:SuperHero;">Marvel Comics</h1>
       <form id="form1">
-        <input id="search_value" type="text" name="search" placeholder="Search Comics...">
-        <input id="search_button" form="form1" type="button" class="btn btn-primary" onclick="searchFunction()" value="Submit">
+        <input id="search_value" type="text" name="search" placeholder="Search Comics..." >
+        <input id="search_button" form="form1" type="button" class="btn btn-primary btn-lg" onclick="searchFunction()" value="Submit">
       </form>
     </div>
   </div>
@@ -93,6 +113,7 @@
   <div class="container-fluid bg-3 text-center">
     <h3 id="message" style="font-family:SuperHero;"></h3><br>
     <div id="results_div"></div>
+    <div id="load_more"></div>
   </div><br>
 
   <br><br>
