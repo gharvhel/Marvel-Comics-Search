@@ -135,8 +135,8 @@
       </div>
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
-          <li class="active"><a href="index.html">Home</a></li>
-          <li><a href="howTO.html">How To Use</a></li>
+          <li><a href="index.html">Home</a></li>
+          <li class="active"><a href="howTO.html">How To Use</a></li>
         </ul>
       </div>
     </div>
@@ -145,58 +145,29 @@
   <div class="jumbotron">
     <div class="container text-center">
       <h1 style="font-family:SuperHero;">Marvel Comics</h1>
-      <form id="form1">
-        <input id="search_value" form="form1" type="text" name="search" placeholder="Search All Comics...">
-        <input id="search_button" form="form1" type="button" class="btn btn-primary btn-lg" onclick="searchFunction()"
-          value="Search" style="float:right;">
-        <input style="float:right;clear:both;" id="show_more_button" style="padding-top: 20px;" type="button" onclick="show_more_options()"
-          value="Toggle More Options">
-
-        <div id="more_div">
-          <b>Search By</b><br>
-          <input type="radio" name="title" value="title" id="order1">Exact Title
-          <br>
-          <input type="radio" name="title" value="titleStartsWith" checked="checked" id="order2">Starting Letters of Title
-          <br><br>
-
-          <b>Format</b><br>
-          <select id="format" class="parameter" name="format">
-            <option selected="" value="">Any Format</option>
-            <option value="comic">Comic</option>
-            <option value="magazine">Magazine</option>
-            <option value="trade%20paperback">Trade Paperback</option>
-            <option value="hardcover">Hardcover</option>
-            <option value="digest">Digest</option>
-            <option value="graphic%20novel">Graphic Novel</option>
-            <option value="digital%20comic">Digital Comic</option>
-            <option value="infinite%20comic">Infinite Comic</option>
-          </select>
-          <br><br>
-
-          <b>Year Released</b><br>
-          <input id="start_year" type="number" min="1900" max="2018" step="1" value="">
-       
-          <br><br>
-          <b>Order By</b><br>
-          <select id="order_by" multiple="multiple" class="parameter" name="orderBy">
-              <option value="focDate">Firm Order Commitment Date</option>          
-              <option value="onsaleDate">Date of Sale</option>            
-              <option selected="" value="title">Title</option>
-              <option value="issueNumber">Issue Number</option>
-              <option value="modified">Data Modified</option>
-        </select>
-          <br><br>
-
-          <b>Sort By</b><br>
-          <input type="radio" name="sort" value="" checked="checked" id="sort1">Ascending
-          <br>
-          <input type="radio" name="sort" value="-" id="sort2">Descending
-          <br><br>
-        </div>
-
-      </form>
+      
     </div>
   </div>
+
+  <h1 style="text-align:center">How To Use</h1>
+  <p>
+      <ul>
+            <li>To search a comic by the starting letters of title: type title in search bar and click the search button.</li>
+            <li>To search all comics: simply click search button without putting in the search.</li>
+            <li>To search by exact title or find more filters: click "Toggle More Options" button and more filters will be displayed.</li>
+            <li>To view the first marvel character in the comic in alphabetical order: hover mouse over a result.</li>
+            <li>To load more options after a search: click load more button at bottom, and 10 more options will load onto the page.</li>
+            <li>The More Options section contains the following filters:</li>
+            <ul>
+                <li>Search By <br>
+                        Exact Title or Starting Letters of Title </li>
+                <li>Format</li>
+                <li>Year Released</li>
+                <li>Order By</li>
+                <li>Sort By</li>
+            </ul>
+      </ul>
+  </p>
 
   <div class="container-fluid bg-3 text-center">
     <h3 id="message" style="font-family:SuperHero;"></h3>

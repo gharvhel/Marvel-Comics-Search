@@ -18,8 +18,11 @@ let load_div = document.getElementById("load_more");
 
 function searchFunction(reload = true) {
     if (reload) {
+        results_div.innerHTML = "";
         parameters = { "format": "", "formatType": "", "noVariants": "", "dateDescriptor": "", "dateRange": "", "title": "", "titleStartsWith": "", "startYear": "", "issueNumber": "", "diamondCode": "", "digitalId": "", "upc": "", "isbn": "", "ean": "", "issn": "", "hasDigitalIssue": "", "modifiedSince": "", "creators": "", "characters": "", "series": "", "events": "", "stories": "", "sharedAppearances": "", "collaborators": "", "orderBy": "", "limit": "", "offset": "" };
+        ids = [];
         offset = 0;
+        data_total = 0;
         parameters["ts"] = 1;
         parameters["limit"] = 10;
         message = document.getElementById("message");
@@ -33,7 +36,7 @@ function searchFunction(reload = true) {
         parameters["format"] = frmt;
 
         parameters["startYear"] = document.getElementById("start_year").value;
-
+        console.log(document.getElementById("start_year").value);
         e = document.getElementById("order_by");
         ordrby = e.options[e.selectedIndex].value;
         parameters["orderBy"] = ordrby;
@@ -52,7 +55,7 @@ function searchFunction(reload = true) {
 
     }
     parameters["offset"] = offset;
-    console.log("PARAM:" + parameters["title"]);
+
     $.ajax({
         url: create_url(0, parameters),
         type: "GET",
@@ -78,11 +81,16 @@ function searchFunction(reload = true) {
             let results = data.data.results;
             data_total = data.data.total;
             let html_result = '';
-            if (offset + 10 < data_total) {
-                html_result += '<h4 id="message" style="font-family:SuperHero;"> Showing ' + (offset+1) + ' through ' + (offset+10) + ' out of ' + data_total + '</h4>';
+            if (data_total == 0) {
+                html_result += '<h4 id="message" style="font-family:SuperHero;"> Showing ' + (offset) + ' through ' + (offset+10) + ' out of ' + data_total + '</h4>';
             } else {
-                html_result += '<h4 id="message" style="font-family:SuperHero;"> Showing ' + (offset+1) + ' through ' + data_total + ' out of ' + data_total + '</h4>';
+                if (offset + 10 < data_total) {
+                    html_result += '<h4 id="message" style="font-family:SuperHero;"> Showing ' + (offset+1) + ' through ' + (offset+10) + ' out of ' + data_total + '</h4>';
+                } else {
+                    html_result += '<h4 id="message" style="font-family:SuperHero;"> Showing ' + (offset+1) + ' through ' + data_total + ' out of ' + data_total + '</h4>';
+                }
             }
+            
             html_result += '<div class="alert alert-info">Hover over cards below for information about first comic character.</div>';
             for (let i = 0; i < results.length; i++) {
                 let result = results[i];
@@ -118,12 +126,16 @@ function searchFunction(reload = true) {
             }
 
             html_result += '<hr class="incline-line"></hr>';
-
-            if (offset + 10 < data_total) {
-                html_result += '<h4 id="message" style="font-family:SuperHero;"> Showed ' + (offset+1) + ' through ' + (offset+10) + ' out of ' + data_total + '</h4>';
+            if (data_total == 0) {
+                html_result += '<h4 id="message" style="font-family:SuperHero;"> Showing ' + (offset) + ' through ' + (offset+10) + ' out of ' + data_total + '</h4>';
             } else {
-                html_result += '<h4 id="message" style="font-family:SuperHero;"> Showed ' + (offset+1) + ' through ' + data_total + ' out of ' + data_total + '</h4>';
+                if (offset + 10 < data_total) {
+                    html_result += '<h4 id="message" style="font-family:SuperHero;"> Showed ' + (offset+1) + ' through ' + (offset+10) + ' out of ' + data_total + '</h4>';
+                } else {
+                    html_result += '<h4 id="message" style="font-family:SuperHero;"> Showed ' + (offset+1) + ' through ' + data_total + ' out of ' + data_total + '</h4>';
+                }
             }
+            
             html_result += '<hr class="incline-line"></hr>';
 
             if (reload)
@@ -149,7 +161,7 @@ function searchFunction(reload = true) {
                     success: function (data) {
                         let characters = data.data.results;
                         html_str = "";
-                        html_str += '<h4 style="color:White;"><b>First Character In Comic</b></h4>';
+                        html_str += '<h4 style="color:White;"><b>First Character In Comic (alphabetical)</b></h4>';
 
                         if (characters.length == 0) {
                             html_str += create_image("img/no_portrait", "", "jpg",1);
