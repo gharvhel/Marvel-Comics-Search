@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Marvel Comics</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="img/marvel.ico">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+  <style>
+
+    @font-face { font-family: SuperHero; src: url('fonts/SaucerBB.ttf'); }
+  
+    .flip-card {
+  background-color: transparent;
+  width: 300px;
+  height: 600px;
+  perspective: 1000px;
+  padding: 5px;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+.flip-card-front {
+  background-color: #bbb;
+  color: black;
+}
+
+.flip-card-back {
+  background-color: #2980b9;
+  color: white;
+  transform: rotateY(180deg);
+}
+
+  #more_div {
+    width: 100%;
+    padding: 50px 0;
+    text-align: left;
+    background-color: rgba(201, 196, 196, 0.9); 
+    padding: 20px;
+    display: none;
+    border-radius: 25px;
+}  
+
+
+    .btn-block {
+      display: block;
+      width: 100%;
+      margin-top: 50px;
+    }
+    .incline-line{
+        width: 98%;
+        margin: auto;
+        margin-top: 5%;
+        margin-bottom: 5%;
+        transform: rotate(3deg);
+        /*border-color: rgb(226,54,54);*/
+        border-color: purple;
+    }
+   
+    #search_value {
+        width: 30%;
+        box-sizing: border-box;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+        background-color: white;
+        background-image: url('img/searchicon.png');
+        background-position: 10px 10px; 
+        background-repeat: no-repeat;
+        padding: 12px 20px 12px 40px;
+        -webkit-transition: width 0.2s ease-in-out;
+        transition: width 0.2s ease-in-out;
+    }
+    #search_value:focus {
+        width: 80%;
+    }
+    .navbar {
+        margin-bottom: 0;
+        border-radius: 0;
+        color: white;
+    }
+    .jumbotron h1, .jumbotron .h1 {
+    color: White;
+    background-color: rgba(226,54,54, 0.7); 
+    line-height: 46.2px;
+    padding: 3px;
+    border-radius: 25px;
+    }
+    
+    .jumbotron {
+        background-image: url("img/marvel_bg.jpg");
+        background-position: center; 
+    }
+    
+    footer {
+      background-color: #504a4a;
+      padding: 25px;
+      color: white;
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">Marvel</a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="index.html">Home</a></li>
+          <li><a href="howTO.html">How To Use</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="jumbotron">
+    <div class="container text-center">
+      <h1 style="font-family:SuperHero;">Marvel Comics</h1>
+      <form id="form1">
+        <input id="search_value" form="form1" type="text" name="search" placeholder="Search All Comics...">
+        <input id="search_button" form="form1" type="button" class="btn btn-primary btn-lg" onclick="searchFunction()"
+          value="Search" style="float:right;">
+        <input style="float:right;clear:both;" id="show_more_button" style="padding-top: 20px;" type="button" onclick="show_more_options()"
+          value="Toggle More Options">
+
+        <div id="more_div">
+          <b>Search By</b><br>
+          <input type="radio" name="title" value="title" id="order1">Exact Title
+          <br>
+          <input type="radio" name="title" value="titleStartsWith" checked="checked" id="order2">Starting Letters of Title
+          <br><br>
+
+          <b>Format</b><br>
+          <select id="format" class="parameter" name="format">
+            <option selected="" value="">Any Format</option>
+            <option value="comic">Comic</option>
+            <option value="magazine">Magazine</option>
+            <option value="trade%20paperback">Trade Paperback</option>
+            <option value="hardcover">Hardcover</option>
+            <option value="digest">Digest</option>
+            <option value="graphic%20novel">Graphic Novel</option>
+            <option value="digital%20comic">Digital Comic</option>
+            <option value="infinite%20comic">Infinite Comic</option>
+          </select>
+          <br><br>
+
+          <b>Year Released</b><br>
+          <input id="start_year" type="number" min="1900" max="2018" step="1" value="">
+       
+          <br><br>
+          <b>Order By</b><br>
+          <select id="order_by" multiple="multiple" class="parameter" name="orderBy">
+              <option value="focDate">Firm Order Commitment Date</option>          
+              <option value="onsaleDate">Date of Sale</option>            
+              <option selected="" value="title">Title</option>
+              <option value="issueNumber">Issue Number</option>
+              <option value="modified">Data Modified</option>
+        </select>
+          <br><br>
+
+          <b>Sort By</b><br>
+          <input type="radio" name="sort" value="" checked="checked" id="sort1">Ascending
+          <br>
+          <input type="radio" name="sort" value="-" id="sort2">Descending
+          <br><br>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+  <div class="container-fluid bg-3 text-center">
+    <h3 id="message" style="font-family:SuperHero;"></h3>
+    <div id="results_div"></div>
+    <div id="load_more"></div>
+  </div>
+
+
+  <footer class="container-fluid text-center">
+    <p id="footer">Data provided by Marvel. © 2018 MARVEL</p>
+  </footer>
+  <script>
+    var input = document.getElementById("search_value");
+    input.addEventListener("keyup", function (event) {
+      event.preventDefault();
+      if (event.keyCode === 13) {
+        document.getElementById("search_button").click();
+      }
+    });
+
+    function show_more_options() {
+      var x = document.getElementById("more_div");
+      if (x.style.display === "none") {
+        x.style.display = "block";
+      } else {
+        x.style.display = "none";
+      }
+    }
+
+  </script>
+</body>
+<script type="text/javascript" src="script.js"></script>
+
+</html>
